@@ -1,0 +1,393 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>For Zon Mi ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: #050008;
+            color: white;
+            font-family: Georgia, serif;
+        }
+
+        #stars {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            from { opacity: .15; }
+            to { opacity: 1; }
+        }
+
+        .screen {
+            position: relative;
+            z-index: 2;
+            min-height: 100vh;
+            min-height: 100svh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .card {
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .small-text {
+            color: #ff9db8;
+            font-size: 12px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            font-size: clamp(35px, 8vw, 65px);
+            font-weight: normal;
+            line-height: 1.3;
+            text-shadow: 0 0 30px #ff175b;
+        }
+
+        .description {
+            margin: 22px 0 35px;
+            color: #c8b8c8;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        button {
+            border: 1px solid #ff638e;
+            padding: 15px 30px;
+            border-radius: 50px;
+            background: linear-gradient(135deg, #ff1744, #a50044);
+            color: white;
+            font-size: 14px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            box-shadow: 0 0 25px #ff174455;
+            transition: .3s;
+        }
+
+        button:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 40px #ff1744aa;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        #heart {
+            font-size: 85px;
+            margin-bottom: 25px;
+            animation: heartbeat 1.2s infinite;
+            filter: drop-shadow(0 0 25px #ff1744);
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        #loveTitle {
+            opacity: 0;
+            animation: reveal 2s forwards;
+        }
+
+        #message {
+            margin: 25px auto;
+            max-width: 460px;
+            min-height: 100px;
+            color: #f4dce6;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            line-height: 2;
+            white-space: pre-line;
+        }
+
+        @keyframes reveal {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+                filter: blur(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .floating-heart {
+            position: fixed;
+            bottom: -40px;
+            z-index: 5;
+            pointer-events: none;
+            animation: floatUp 5s linear forwards;
+        }
+
+        @keyframes floatUp {
+            to {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .final-question {
+            font-size: clamp(28px, 6vw, 45px);
+            color: #ff9db8;
+            margin-bottom: 25px;
+        }
+
+        #answer {
+            margin-top: 25px;
+            color: #ffb6cc;
+            font-size: 20px;
+            line-height: 1.8;
+            animation: reveal 1s forwards;
+        }
+
+        @media (max-width: 500px) {
+            .small-text {
+                letter-spacing: 3px;
+            }
+
+            .description {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="stars"></div>
+
+    <main class="screen">
+
+        <!-- First screen -->
+
+        <section class="card" id="intro">
+
+            <p class="small-text">A little surprise for you</p>
+
+            <h1>Hey, Zon Mi <span>♡</span></h1>
+
+            <p class="description">
+                There's something I've been wanting to tell you...
+                <br>
+                So, I made something special just for you.
+            </p>
+
+            <button id="openButton">
+                Open My Heart ❤️
+            </button>
+
+        </section>
+
+
+        <!-- Love message screen -->
+
+        <section class="card hidden" id="loveScreen">
+
+            <div id="heart">❤️</div>
+
+            <p class="small-text">From the bottom of my heart</p>
+
+            <h1 id="loveTitle">Zon Mi, I Love You</h1>
+
+            <div id="message"></div>
+
+            <button id="questionButton" class="hidden">
+                One Last Question 💌
+            </button>
+
+        </section>
+
+
+        <!-- Final screen -->
+
+        <section class="card hidden" id="finalScreen">
+
+            <p class="small-text">Just one thing...</p>
+
+            <h2 class="final-question">
+                Will you give me a chance
+                to make you smile? ❤️
+            </h2>
+
+            <p class="description">
+                No pressure. I just wanted you to know
+                how special you are to me.
+            </p>
+
+            <button id="yesButton">
+                You made me smile 💗
+            </button>
+
+            <div id="answer"></div>
+
+        </section>
+
+    </main>
+
+
+    <script>
+        // Create the stars
+
+        const stars = document.getElementById("stars");
+
+        for (let i = 0; i < 120; i++) {
+            const star = document.createElement("div");
+
+            star.className = "star";
+            star.style.left = Math.random() * 100 + "%";
+            star.style.top = Math.random() * 100 + "%";
+            star.style.animationDelay = Math.random() * 3 + "s";
+
+            stars.appendChild(star);
+        }
+
+
+        // Create floating hearts
+
+        function createHeart(explosion = false) {
+            const heart = document.createElement("div");
+
+            heart.className = "floating-heart";
+
+            const emojis = ["❤️", "💗", "💕", "💖", "💘"];
+
+            heart.textContent =
+                emojis[Math.floor(Math.random() * emojis.length)];
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.fontSize = (18 + Math.random() * 25) + "px";
+            heart.style.animationDuration =
+                (explosion ? 2 : 4 + Math.random() * 4) + "s";
+
+            if (explosion) {
+                heart.style.bottom = (20 + Math.random() * 50) + "vh";
+            }
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 8000);
+        }
+
+
+        // Type the message one character at a time
+
+        const loveMessage =
+            "You make ordinary moments feel special.\n\n" +
+            "I don't know what the future holds,\n" +
+            "but I know I wanted you to hear these words.\n\n" +
+            "Zon Mi, you are special to me. ❤️";
+
+        function typeMessage() {
+            const message = document.getElementById("message");
+            let index = 0;
+
+            function typeNext() {
+                if (index < loveMessage.length) {
+                    message.textContent += loveMessage[index];
+                    index++;
+
+                    setTimeout(typeNext, 45);
+                } else {
+                    document.getElementById("questionButton")
+                        .classList.remove("hidden");
+                }
+            }
+
+            typeNext();
+        }
+
+
+        // Open the love letter
+
+        document.getElementById("openButton")
+            .addEventListener("click", () => {
+
+                document.getElementById("intro")
+                    .classList.add("hidden");
+
+                document.getElementById("loveScreen")
+                    .classList.remove("hidden");
+
+                for (let i = 0; i < 35; i++) {
+                    setTimeout(() => createHeart(true), i * 45);
+                }
+
+                typeMessage();
+            });
+
+
+        // Open the final question
+
+        document.getElementById("questionButton")
+            .addEventListener("click", () => {
+
+                document.getElementById("loveScreen")
+                    .classList.add("hidden");
+
+                document.getElementById("finalScreen")
+                    .classList.remove("hidden");
+
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => createHeart(true), i * 100);
+                }
+            });
+
+
+        // Final button
+
+        document.getElementById("yesButton")
+            .addEventListener("click", () => {
+
+                document.getElementById("answer").textContent =
+                    "Your smile just made this little world brighter. 💖";
+
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => createHeart(true), i * 80);
+                }
+            });
+
+
+        // Continuous floating hearts
+
+        setInterval(() => createHeart(), 650);
+
+    </script>
+
+</body>
+</html>
+```
